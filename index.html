@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Priyanka Kamath — Engineering Leader</title>
+<style>
+  :root{
+    --bg: #14171C;
+    --bg-raised: #191D24;
+    --ink: #ECE9E2;
+    --ink-dim: #9CA3AD;
+    --line: #2A2E36;
+    --accent: #4C9A75;
+    --accent-dim: #3A7359;
+    --gold: #C9A227;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', -apple-system, sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--accent-dim); color:#fff; }
+
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+
+  .mono{ font-family:'IBM Plex Mono', 'Courier New', monospace; }
+
+  .wrap{ max-width:760px; margin:0 auto; padding:0 28px; }
+
+  /* ---------- Header ---------- */
+  header{
+    padding:96px 0 64px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--accent);
+    border-radius:50%;
+    display:inline-block;
+  }
+  h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(36px, 6vw, 56px);
+    font-weight:600;
+    letter-spacing:-0.02em;
+    line-height:1.05;
+    color:var(--ink);
+  }
+  .title-line{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(16px, 2.4vw, 19px);
+    color:var(--ink-dim);
+    margin-top:14px;
+    font-weight:400;
+  }
+  .title-line strong{ color:var(--ink); font-weight:600; }
+
+  .bio{
+    margin-top:32px;
+    font-size:17px;
+    color:#D3D0C8;
+    max-width:600px;
+  }
+
+  .links{
+    display:flex;
+    gap:24px;
+    margin-top:32px;
+    flex-wrap:wrap;
+  }
+  .links a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--ink-dim);
+    border-bottom:1px solid var(--line);
+    padding-bottom:2px;
+  }
+  .links a:hover{ color:var(--accent); border-color:var(--accent); text-decoration:none; }
+
+  /* ---------- Section labels ---------- */
+  section{ padding:64px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  .section-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+    margin-bottom:36px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .section-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  /* ---------- Experience ledger ---------- */
+  .role{ margin-bottom:56px; }
+  .role:last-child{ margin-bottom:0; }
+  .role-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:6px;
+  }
+  .role-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:19px;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .role-dates{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--accent);
+    white-space:nowrap;
+  }
+  .role-org{
+    font-size:14px;
+    color:var(--ink-dim);
+    margin-bottom:20px;
+  }
+
+  .ledger{
+    border-left:1px solid var(--line);
+    padding-left:20px;
+  }
+  .entry{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:16px;
+    align-items:start;
+    padding:12px 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .entry:last-child{ border-bottom:none; padding-bottom:0; }
+  .entry-desc{ font-size:14.5px; color:#D3D0C8; }
+  .entry-metric{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    font-weight:600;
+    color:var(--gold);
+    white-space:nowrap;
+    text-align:right;
+    min-width:64px;
+  }
+
+  .earlier{
+    margin-top:8px;
+  }
+  .earlier-item{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:16px;
+    padding:14px 0;
+    border-top:1px solid var(--line);
+    font-size:14px;
+  }
+  .earlier-item:first-child{ border-top:none; }
+  .earlier-role{ color:var(--ink); font-weight:500; }
+  .earlier-org{ color:var(--ink-dim); font-size:12.5px; margin-top:2px; }
+  .earlier-desc{ color:#B8B5AD; }
+
+  /* ---------- Education ---------- */
+  .edu-item{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:16px;
+    padding:16px 0;
+    border-top:1px solid var(--line);
+  }
+  .edu-item:first-child{ border-top:none; }
+  .edu-school{ font-weight:600; color:var(--ink); font-size:15px; }
+  .edu-degree{ color:var(--ink-dim); font-size:13.5px; margin-top:2px; }
+  .edu-year{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-dim); }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding:56px 0 80px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .footer-note{ font-size:13px; color:var(--ink-dim); }
+  .footer-links{ display:flex; gap:20px; }
+  .footer-links a{ font-family:'IBM Plex Mono', monospace; font-size:13px; }
+
+  @media (max-width:560px){
+    header{ padding:64px 0 44px; }
+    section{ padding:48px 0; }
+    .entry, .earlier-item{ grid-template-columns:1fr; }
+    .entry-metric{ text-align:left; }
+    .role-head{ flex-direction:column; align-items:flex-start; gap:4px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
+
+  .fade-in{
+    opacity:0;
+    animation:fadeIn 0.7s ease forwards;
+  }
+  @keyframes fadeIn{
+    from{ opacity:0; transform:translateY(8px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="wrap">
+  <header class="fade-in">
+    <div class="eyebrow">Seattle, WA</div>
+    <h1>Priyanka Kamath</h1>
+    <p class="title-line">Software Development Manager III at <strong>Amazon</strong> — regulatory &amp; compliance engineering</p>
+    <p class="bio">
+      I lead the engineering teams that sit between Amazon's ambition to launch in new markets and the regulatory reality of doing so legally. My teams built the software that let Amazon launch in Poland, the Netherlands, and Sweden, kept AWS Marketplace compliant across Europe, and replaced manual anti-money-laundering review with machine learning. I've also carried that same rigor into adjacent domains — scaling a security patching product to 5M+ customers, and now building AI-native systems into how 400K+ Amazon employees experience compensation. Earlier in my career, I built the analytics behind Amazon's Brand Registry program, helping it grow into the backbone of a multi-billion-dollar seller business.
+    </p>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/priyankakh/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="mailto:kamathp@amazon.com">Email</a>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-label">Experience</div>
+
+    <div class="role">
+      <div class="role-head">
+        <div class="role-title">Software Development Manager III</div>
+        <div class="role-dates mono">Jun 2025 — Present</div>
+      </div>
+      <div class="role-org">Amazon, Vancouver, BC</div>
+      <div class="ledger">
+        <div class="entry">
+          <div class="entry-desc">Introduced AI features — Conversation Coach and Compensation Explainability — for Amazon managers, compensation consultants, and HR partners as part of the 2026 Annual Compensation cycle</div>
+          <div class="entry-metric">AI launch</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Led the roadmap to integrate AI natively into the Compensation Calculations platform</div>
+          <div class="entry-metric">roadmap</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Led a team of 11 engineers owning core components of the Amazon &amp; AWS Compensation product</div>
+          <div class="entry-metric">400K+ employees</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Built a product for Compensation Consultants and HR to determine employee eligibility for compensation events, including Annual Performance Reviews</div>
+          <div class="entry-metric">eligibility tool</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Mentored and coached engineers, improving efficiency and operational excellence across Compensation products</div>
+          <div class="entry-metric">mentorship</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="role-head">
+        <div class="role-title">Software Development Manager III</div>
+        <div class="role-dates mono">2023 — May 2025</div>
+      </div>
+      <div class="role-org">Amazon, Arlington, VA</div>
+      <div class="ledger">
+        <div class="entry">
+          <div class="entry-desc">Launched a zero-to-one Finance Customer Contact Center product, leading a team of 10 engineers</div>
+          <div class="entry-metric">10 → 250 users</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Led the strategy to scale the Customer Contact Center and automate repeatable tasks with AI agents and system plugins</div>
+          <div class="entry-metric">AI agents</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Led the AWS Systems Manager team of 12 engineers patching EC2 and hybrid instances, improving the product's security posture</div>
+          <div class="entry-metric">5MM+ customers</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Mentored and grew engineers and managers, leading to multiple promotions</div>
+          <div class="entry-metric">promotions</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Led technical and security strategy for expanding patching solutions across multiple AWS accounts and regions</div>
+          <div class="entry-metric">multi-account</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="role-head">
+        <div class="role-title">Software Development Manager</div>
+        <div class="role-dates mono">2022 — 2023</div>
+      </div>
+      <div class="role-org">Amazon, Seattle, WA</div>
+      <div class="ledger">
+        <div class="entry">
+          <div class="entry-desc">Built and led a cross-functional org of 22 engineers, 2 engineering managers, and a TPM</div>
+          <div class="entry-metric">25-person org</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Led technical strategy for Regulatory Reporting, Denied Party &amp; PEP Screening, and Suspicious Activity Monitoring (SAFR) across Amazon Stores, AWS Marketplace, and Amazon Gift Cards in the EU</div>
+          <div class="entry-metric">WW compliance</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Managed data processing for millions of transactions to generate worldwide regulatory reports across EU, NA, and LATAM</div>
+          <div class="entry-metric">millions of txns</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Led the Gift Cards launch on APE payment licenses, scaling seller screening systems to buyers to safeguard a multi-million-dollar business</div>
+          <div class="entry-metric">Gift Cards launch</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Delivered the PD2 initiative for accurate data retention across 20+ screening services spanning APE, API, and APUK payment entities</div>
+          <div class="entry-metric">20+ services</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="role-head">
+        <div class="role-title">Engineering Manager</div>
+        <div class="role-dates mono">2022</div>
+      </div>
+      <div class="role-org">Flexport, Bellevue, WA</div>
+      <div class="ledger">
+        <div class="entry">
+          <div class="entry-desc">Built the technology roadmap for a data platform improving third-party vendor integrations and data quality in Flexport's freight forwarding applications</div>
+          <div class="entry-metric">roadmap</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Partnered with staff engineers and VPs to define the platform's architecture</div>
+          <div class="entry-metric">architecture</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Built a hiring plan with engineering leadership to scale the team</div>
+          <div class="entry-metric">hiring plan</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="role-head">
+        <div class="role-title">Software Development Manager III</div>
+        <div class="role-dates mono">2019 — 2022</div>
+      </div>
+      <div class="role-org">Amazon, Seattle, WA</div>
+      <div class="ledger">
+        <div class="entry">
+          <div class="entry-desc">Unstuck a regulatory project that had been blocked for 3+ years, clearing it within a quarter of joining — protecting Amazon's EU payment licenses and cutting manual compliance effort</div>
+          <div class="entry-metric">−50 hrs/yr</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Led delivery of the regulatory software required to launch Amazon.pl, Amazon.nl, Amazon.se, and AWS Marketplace across Europe</div>
+          <div class="entry-metric">4 launches</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Built ML models to flag anti-money-laundering activity, replacing manual SQL rule-writing</div>
+          <div class="entry-metric">−$1.05M/yr</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Rebuilt team structure and hiring pipeline, lifting delivery velocity over 9 months</div>
+          <div class="entry-metric">50% → 95%</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Directed execution to bring Amazon Stores' regulatory services into GDPR compliance for European customers and CCPA compliance for NA customers, proactively avoiding regulatory fines</div>
+          <div class="entry-metric">$5–25M avoided</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="role-head">
+        <div class="role-title">Business Intelligence Engineer II</div>
+        <div class="role-dates mono">2017 — 2019</div>
+      </div>
+      <div class="role-org">Amazon, Seattle, WA</div>
+      <div class="ledger">
+        <div class="entry">
+          <div class="entry-desc">Built the KPIs and UX integrations behind Brand Registry's growth, now used by ~130,000 brands</div>
+          <div class="entry-metric">$3B+ sales</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Improved automated enforcement against abusive sellers by 30%+</div>
+          <div class="entry-metric">−$400K</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Tightened identity verification on the brand complaint form</div>
+          <div class="entry-metric">−44% fraud</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Built keyword detection for abusive brand complaints, lifting automation</div>
+          <div class="entry-metric">−$125K, +15%</div>
+        </div>
+        <div class="entry">
+          <div class="entry-desc">Held infrastructure costs flat while scaling new programs; ran 2019 AWS planning for Consumables</div>
+          <div class="entry-metric">−$40K</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="earlier">
+      <div class="earlier-item">
+        <div>
+          <div class="earlier-role">Software Engineer</div>
+          <div class="earlier-org mono">Open Juice Technologies · 2015</div>
+        </div>
+        <div class="earlier-desc">Built and launched an e-commerce site to drive foot traffic for an auto dealer; full-stack development with PHP, jQuery, and Ajax.</div>
+      </div>
+      <div class="earlier-item">
+        <div>
+          <div class="earlier-role">Project Engineer</div>
+          <div class="earlier-org mono">Wipro Technologies · 2013–2014</div>
+        </div>
+        <div class="earlier-desc">Improved gross margin 3% through customer behavior analysis using demand forecasting and sentiment analysis.</div>
+      </div>
+      <div class="earlier-item">
+        <div>
+          <div class="earlier-role">Summer Intern</div>
+          <div class="earlier-org mono">Fidessa Corporation · 2016</div>
+        </div>
+        <div class="earlier-desc">Built a web app tracking global market open/close times, saving a 400-person team over 25 hours a week and $192K a year.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Education</div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-school">University at Buffalo, The State University of New York</div>
+        <div class="edu-degree">M.S., Computer Science</div>
+      </div>
+      <div class="edu-year">2015 – 2017</div>
+    </div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-school">NMAM Institute of Technology</div>
+        <div class="edu-degree">B.E., Electrical &amp; Electronics Engineering</div>
+      </div>
+      <div class="edu-year">2009 – 2013</div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-note">© 2026 Priyanka Kamath</div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/priyankakh/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:kamathp@amazon.com">Email</a>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
