@@ -1,0 +1,29 @@
+# Priyanka Kamath
+
+> Priyanka Kamath is a Software Development Manager III at Amazon in Vancouver,
+> British Columbia. She leads engineering teams across regulatory and compliance
+> software, AI-native compensation systems, cloud security patching, and
+> large-scale data platforms.
+
+## Facts
+
+- Current role: Software Development Manager III, Amazon, Vancouver, BC (since June 2025)
+- Team: 11 engineers on the Amazon & AWS Compensation product, serving 400K+ employees
+- Prior employers: Amazon (Seattle, Arlington, Vancouver), Flexport, Wipro Technologies
+- Education: M.S. Computer Science, University at Buffalo (SUNY), 2015–2017; B.E. Electrical & Electronics Engineering, NMAM Institute of Technology, 2009–2013
+- Contact: kamathp@amazon.com · https://www.linkedin.com/in/priyankakh/
+
+## Selected results
+
+- Delivered the regulatory software required to launch Amazon.pl, Amazon.nl, Amazon.se, and AWS Marketplace across Europe.
+- Replaced manual anti-money-laundering SQL rule-writing with machine learning models, removing $1.05M in annual cost.
+- Led the AWS Systems Manager patching team (12 engineers) for EC2 and hybrid instances, serving 5MM+ customers.
+- Shipped Conversation Coach and Compensation Explainability AI features for the 2026 Annual Compensation cycle.
+- Led a 25-person organization covering regulatory reporting, denied party and PEP screening, and suspicious activity monitoring across Amazon Stores, AWS Marketplace, and Amazon Gift Cards.
+- Built the KPIs and UX integrations behind Amazon Brand Registry's growth to ~130,000 brands and $3B+ in sales.
+- Brought Amazon Stores' regulatory services into GDPR and CCPA compliance, avoiding an estimated $5–25M in fines.
+
+## Pages
+
+- [Home](https://priyankakamath91-cyber.github.io/): biography, selected impact metrics, contact links.
+- [About](https://priyankakamath91-cyber.github.io/about.html): full role-by-role experience, earlier roles, and education.

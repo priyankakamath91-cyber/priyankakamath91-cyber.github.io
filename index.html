@@ -1,483 +1,396 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Priyanka Kamath — Engineering Leader</title>
-<style>
-  :root{
-    --bg: #14171C;
-    --bg-raised: #191D24;
-    --ink: #ECE9E2;
-    --ink-dim: #9CA3AD;
-    --line: #2A2E36;
-    --accent: #4C9A75;
-    --accent-dim: #3A7359;
-    --gold: #C9A227;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--bg);
-    color:var(--ink);
-    font-family:'Inter', -apple-system, sans-serif;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  ::selection{ background:var(--accent-dim); color:#fff; }
-
-  a{ color:var(--accent); text-decoration:none; }
-  a:hover{ text-decoration:underline; }
-  a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
-
-  .mono{ font-family:'IBM Plex Mono', 'Courier New', monospace; }
-
-  .wrap{ max-width:760px; margin:0 auto; padding:0 28px; }
-
-  /* ---------- Header ---------- */
-  header{
-    padding:96px 0 64px;
-    border-bottom:1px solid var(--line);
-  }
-  .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--accent);
-    margin-bottom:20px;
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .eyebrow::before{
-    content:"";
-    width:7px; height:7px;
-    background:var(--accent);
-    border-radius:50%;
-    display:inline-block;
-  }
-  h1{
-    font-family:'Space Grotesk', sans-serif;
-    font-size:clamp(36px, 6vw, 56px);
-    font-weight:600;
-    letter-spacing:-0.02em;
-    line-height:1.05;
-    color:var(--ink);
-  }
-  .title-line{
-    font-family:'Space Grotesk', sans-serif;
-    font-size:clamp(16px, 2.4vw, 19px);
-    color:var(--ink-dim);
-    margin-top:14px;
-    font-weight:400;
-  }
-  .title-line strong{ color:var(--ink); font-weight:600; }
-
-  .bio{
-    margin-top:32px;
-    font-size:17px;
-    color:#D3D0C8;
-    max-width:600px;
-  }
-
-  .links{
-    display:flex;
-    gap:24px;
-    margin-top:32px;
-    flex-wrap:wrap;
-  }
-  .links a{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:13px;
-    color:var(--ink-dim);
-    border-bottom:1px solid var(--line);
-    padding-bottom:2px;
-  }
-  .links a:hover{ color:var(--accent); border-color:var(--accent); text-decoration:none; }
-
-  /* ---------- Section labels ---------- */
-  section{ padding:64px 0; border-bottom:1px solid var(--line); }
-  section:last-of-type{ border-bottom:none; }
-  .section-label{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--ink-dim);
-    margin-bottom:36px;
-    display:flex;
-    align-items:center;
-    gap:14px;
-  }
-  .section-label::after{
-    content:"";
-    flex:1;
-    height:1px;
-    background:var(--line);
-  }
-
-  /* ---------- Experience ledger ---------- */
-  .role{ margin-bottom:56px; }
-  .role:last-child{ margin-bottom:0; }
-  .role-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    gap:16px;
-    flex-wrap:wrap;
-    margin-bottom:6px;
-  }
-  .role-title{
-    font-family:'Space Grotesk', sans-serif;
-    font-size:19px;
-    font-weight:600;
-    color:var(--ink);
-  }
-  .role-dates{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12px;
-    color:var(--accent);
-    white-space:nowrap;
-  }
-  .role-org{
-    font-size:14px;
-    color:var(--ink-dim);
-    margin-bottom:20px;
-  }
-
-  .ledger{
-    border-left:1px solid var(--line);
-    padding-left:20px;
-  }
-  .entry{
-    display:grid;
-    grid-template-columns:1fr auto;
-    gap:16px;
-    align-items:start;
-    padding:12px 0;
-    border-bottom:1px dashed var(--line);
-  }
-  .entry:last-child{ border-bottom:none; padding-bottom:0; }
-  .entry-desc{ font-size:14.5px; color:#D3D0C8; }
-  .entry-metric{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:14px;
-    font-weight:600;
-    color:var(--gold);
-    white-space:nowrap;
-    text-align:right;
-    min-width:64px;
-  }
-
-  .earlier{
-    margin-top:8px;
-  }
-  .earlier-item{
-    display:grid;
-    grid-template-columns:150px 1fr;
-    gap:16px;
-    padding:14px 0;
-    border-top:1px solid var(--line);
-    font-size:14px;
-  }
-  .earlier-item:first-child{ border-top:none; }
-  .earlier-role{ color:var(--ink); font-weight:500; }
-  .earlier-org{ color:var(--ink-dim); font-size:12.5px; margin-top:2px; }
-  .earlier-desc{ color:#B8B5AD; }
-
-  /* ---------- Education ---------- */
-  .edu-item{
-    display:grid;
-    grid-template-columns:1fr auto;
-    gap:16px;
-    padding:16px 0;
-    border-top:1px solid var(--line);
-  }
-  .edu-item:first-child{ border-top:none; }
-  .edu-school{ font-weight:600; color:var(--ink); font-size:15px; }
-  .edu-degree{ color:var(--ink-dim); font-size:13.5px; margin-top:2px; }
-  .edu-year{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-dim); }
-
-  /* ---------- Footer ---------- */
-  footer{
-    padding:56px 0 80px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:16px;
-  }
-  .footer-note{ font-size:13px; color:var(--ink-dim); }
-  .footer-links{ display:flex; gap:20px; }
-  .footer-links a{ font-family:'IBM Plex Mono', monospace; font-size:13px; }
-
-  @media (max-width:560px){
-    header{ padding:64px 0 44px; }
-    section{ padding:48px 0; }
-    .entry, .earlier-item{ grid-template-columns:1fr; }
-    .entry-metric{ text-align:left; }
-    .role-head{ flex-direction:column; align-items:flex-start; gap:4px; }
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    html{ scroll-behavior:auto; }
-  }
-
-  .fade-in{
-    opacity:0;
-    animation:fadeIn 0.7s ease forwards;
-  }
-  @keyframes fadeIn{
-    from{ opacity:0; transform:translateY(8px); }
-    to{ opacity:1; transform:translateY(0); }
-  }
-</style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-</head>
-<body>
-
-<div class="wrap">
-  <header class="fade-in">
-    <div class="eyebrow">Seattle, WA</div>
-    <h1>Priyanka Kamath</h1>
-    <p class="title-line">Software Development Manager III at <strong>Amazon</strong> — regulatory &amp; compliance engineering</p>
-    <p class="bio">
-      I lead the engineering teams that sit between Amazon's ambition to launch in new markets and the regulatory reality of doing so legally. My teams built the software that let Amazon launch in Poland, the Netherlands, and Sweden, kept AWS Marketplace compliant across Europe, and replaced manual anti-money-laundering review with machine learning. I've also carried that same rigor into adjacent domains — scaling a security patching product to 5M+ customers, and now building AI-native systems into how 400K+ Amazon employees experience compensation. Earlier in my career, I built the analytics behind Amazon's Brand Registry program, helping it grow into the backbone of a multi-billion-dollar seller business.
-    </p>
-    <div class="links">
-      <a href="https://www.linkedin.com/in/priyankakh/" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a href="mailto:kamathp@amazon.com">Email</a>
-    </div>
-  </header>
-
-  <section>
-    <div class="section-label">Experience</div>
-
-    <div class="role">
-      <div class="role-head">
-        <div class="role-title">Software Development Manager III</div>
-        <div class="role-dates mono">Jun 2025 — Present</div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Priyanka Kamath &mdash; Engineering Manager at Amazon</title>
+    <meta
+      name="description"
+      content="Priyanka Kamath is a Software Development Manager III at Amazon in Vancouver, BC. She leads engineering teams across regulatory and compliance software, AI-native compensation systems, cloud security patching, and large-scale data platforms."
+    />
+    <meta name="author" content="Priyanka Kamath" />
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large"
+    />
+    <link rel="canonical" href="https://priyankakamath91-cyber.github.io/" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Priyanka Kamath" />
+    <meta
+      property="og:title"
+      content="Priyanka Kamath — Engineering Manager at Amazon"
+    />
+    <meta
+      property="og:description"
+      content="Software Development Manager III at Amazon, leading engineering teams across regulatory compliance, AI-native compensation systems, and cloud security."
+    />
+    <meta property="og:url" content="https://priyankakamath91-cyber.github.io/" />
+    <meta property="profile:first_name" content="Priyanka" />
+    <meta property="profile:last_name" content="Kamath" />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Priyanka Kamath — Engineering Manager at Amazon"
+    />
+    <meta
+      name="twitter:description"
+      content="Software Development Manager III at Amazon, leading engineering teams across regulatory compliance, AI-native compensation systems, and cloud security."
+    />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f7d5d'/%3E%3Ctext x='16' y='22' font-family='Helvetica,Arial,sans-serif' font-size='17' font-weight='bold' fill='%23fff' text-anchor='middle'%3EPK%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "mainEntity": {
+          "@type": "Person",
+          "@id": "https://priyankakamath91-cyber.github.io/#person",
+          "name": "Priyanka Kamath",
+          "givenName": "Priyanka",
+          "familyName": "Kamath",
+          "jobTitle": "Software Development Manager III",
+          "description": "Software Development Manager III at Amazon in Vancouver, BC, leading engineering teams across regulatory and compliance software, AI-native compensation systems, cloud security patching, and large-scale data platforms.",
+          "url": "https://priyankakamath91-cyber.github.io/",
+          "email": "mailto:kamathp@amazon.com",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Amazon",
+            "url": "https://www.amazon.com"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Vancouver",
+            "addressRegion": "BC",
+            "addressCountry": "CA"
+          },
+          "alumniOf": [
+            {
+              "@type": "CollegeOrUniversity",
+              "name": "University at Buffalo, The State University of New York",
+              "url": "https://www.buffalo.edu"
+            },
+            {
+              "@type": "CollegeOrUniversity",
+              "name": "NMAM Institute of Technology",
+              "url": "https://nitte.edu.in/nmamit/"
+            }
+          ],
+          "sameAs": ["https://www.linkedin.com/in/priyankakh/"],
+          "knowsAbout": [
+            "Engineering Management",
+            "Regulatory and Compliance Engineering",
+            "Anti-Money Laundering Systems",
+            "Machine Learning",
+            "Cloud Security",
+            "Compensation Systems",
+            "Data Platforms"
+          ]
+        }
+      }
+    </script>
+    <script>
+      (function () {
+        var t = localStorage.getItem("theme") || "light";
+        document.documentElement.setAttribute("data-theme", t);
+      })();
+    </script>
+  </head>
+  <body>
+    <nav class="site-nav" role="navigation">
+      <div class="container nav-inner">
+        <a href="index.html" class="nav-brand">Priyanka Kamath</a>
+        <button
+          class="nav-toggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li>
+            <button
+              class="theme-toggle"
+              aria-label="Toggle dark mode"
+              title="Toggle dark mode"
+            >
+              <svg
+                class="icon-sun"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="5" />
+                <path
+                  d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+                />
+              </svg>
+              <svg
+                class="icon-moon"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
+              </svg>
+            </button>
+          </li>
+        </ul>
       </div>
-      <div class="role-org">Amazon, Vancouver, BC</div>
-      <div class="ledger">
-        <div class="entry">
-          <div class="entry-desc">Introduced AI features — Conversation Coach and Compensation Explainability — for Amazon managers, compensation consultants, and HR partners as part of the 2026 Annual Compensation cycle</div>
-          <div class="entry-metric">AI launch</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Led the roadmap to integrate AI natively into the Compensation Calculations platform</div>
-          <div class="entry-metric">roadmap</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Led a team of 11 engineers owning core components of the Amazon &amp; AWS Compensation product</div>
-          <div class="entry-metric">400K+ employees</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Built a product for Compensation Consultants and HR to determine employee eligibility for compensation events, including Annual Performance Reviews</div>
-          <div class="entry-metric">eligibility tool</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Mentored and coached engineers, improving efficiency and operational excellence across Compensation products</div>
-          <div class="entry-metric">mentorship</div>
-        </div>
-      </div>
-    </div>
+    </nav>
 
-    <div class="role">
-      <div class="role-head">
-        <div class="role-title">Software Development Manager III</div>
-        <div class="role-dates mono">2023 — May 2025</div>
-      </div>
-      <div class="role-org">Amazon, Arlington, VA</div>
-      <div class="ledger">
-        <div class="entry">
-          <div class="entry-desc">Launched a zero-to-one Finance Customer Contact Center product, leading a team of 10 engineers</div>
-          <div class="entry-metric">10 → 250 users</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Led the strategy to scale the Customer Contact Center and automate repeatable tasks with AI agents and system plugins</div>
-          <div class="entry-metric">AI agents</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Led the AWS Systems Manager team of 12 engineers patching EC2 and hybrid instances, improving the product's security posture</div>
-          <div class="entry-metric">5MM+ customers</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Mentored and grew engineers and managers, leading to multiple promotions</div>
-          <div class="entry-metric">promotions</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Led technical and security strategy for expanding patching solutions across multiple AWS accounts and regions</div>
-          <div class="entry-metric">multi-account</div>
-        </div>
-      </div>
-    </div>
+    <main>
+      <div class="container">
+        <section class="hero">
+          <div class="hero-text">
+            <h1>Priyanka Kamath</h1>
+            <p class="hero-title">
+              Software Development Manager III, Amazon &middot; Vancouver, BC
+            </p>
+            <div class="hero-bio content">
+              <p>
+                Priyanka Kamath is a Software Development Manager III at Amazon
+                in Vancouver, British Columbia. She leads the engineering teams
+                that sit between Amazon's ambition to launch in new markets and
+                the regulatory reality of doing so legally. Her teams built the
+                software that let Amazon launch in Poland, the Netherlands, and
+                Sweden, kept AWS Marketplace compliant across Europe, and
+                replaced manual anti-money-laundering review with machine
+                learning.
+              </p>
+              <p>
+                She has carried that same rigor into adjacent domains — scaling
+                a security patching product to 5MM+ AWS customers, and now
+                building AI-native systems into how 400K+ Amazon employees
+                experience compensation. As part of the 2026 Annual Compensation
+                cycle, her team shipped Conversation Coach and Compensation
+                Explainability for managers, compensation consultants, and HR
+                partners.
+              </p>
+              <p>
+                Earlier in her career she built the analytics behind Amazon's
+                Brand Registry program, helping it grow into the backbone of a
+                multi-billion-dollar seller business, and led a 25-person
+                cross-functional organization covering regulatory reporting,
+                denied party and PEP screening, and suspicious activity
+                monitoring across Amazon Stores, AWS Marketplace, and Amazon
+                Gift Cards.
+              </p>
+              <p>
+                She holds an M.S. in Computer Science from the University at
+                Buffalo and a B.E. in Electrical &amp; Electronics Engineering
+                from NMAM Institute of Technology.
+                <a href="about.html">Full experience and education &rarr;</a>
+              </p>
+            </div>
+            <div class="contact-bar">
+              <a
+                href="https://www.linkedin.com/in/priyankakh/"
+                target="_blank"
+                rel="noopener"
+                class="contact-link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  width="16"
+                  height="16"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M20.47 2H3.53A1.45 1.45 0 002 3.47v17.06A1.45 1.45 0 003.47 22h17.06A1.45 1.45 0 0022 20.53V3.47A1.45 1.45 0 0020.47 2zM8.09 18.74h-3v-9h3v9zM6.59 8.48a1.56 1.56 0 110-3.12 1.56 1.56 0 010 3.12zM18.91 18.74h-3v-4.26c0-1.14-.02-2.6-1.59-2.6-1.59 0-1.83 1.24-1.83 2.52v4.34h-3v-9h2.88v1.23h.04a3.16 3.16 0 012.85-1.56c3.05 0 3.61 2 3.61 4.61v4.72z"
+                  />
+                </svg>
+                LinkedIn
+              </a>
+              <a href="mailto:kamathp@amazon.com" class="contact-link">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  width="16"
+                  height="16"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                Email
+              </a>
+            </div>
+          </div>
+          <!--
+            Drop a square headshot in the repo root (e.g. headshot.jpg) and
+            uncomment this block to show it beside the bio.
 
-    <div class="role">
-      <div class="role-head">
-        <div class="role-title">Software Development Manager</div>
-        <div class="role-dates mono">2022 — 2023</div>
-      </div>
-      <div class="role-org">Amazon, Seattle, WA</div>
-      <div class="ledger">
-        <div class="entry">
-          <div class="entry-desc">Built and led a cross-functional org of 22 engineers, 2 engineering managers, and a TPM</div>
-          <div class="entry-metric">25-person org</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Led technical strategy for Regulatory Reporting, Denied Party &amp; PEP Screening, and Suspicious Activity Monitoring (SAFR) across Amazon Stores, AWS Marketplace, and Amazon Gift Cards in the EU</div>
-          <div class="entry-metric">WW compliance</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Managed data processing for millions of transactions to generate worldwide regulatory reports across EU, NA, and LATAM</div>
-          <div class="entry-metric">millions of txns</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Led the Gift Cards launch on APE payment licenses, scaling seller screening systems to buyers to safeguard a multi-million-dollar business</div>
-          <div class="entry-metric">Gift Cards launch</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Delivered the PD2 initiative for accurate data retention across 20+ screening services spanning APE, API, and APUK payment entities</div>
-          <div class="entry-metric">20+ services</div>
-        </div>
-      </div>
-    </div>
+          <picture>
+            <source srcset="headshot.webp" type="image/webp" />
+            <img
+              src="headshot.jpg"
+              alt="Priyanka Kamath"
+              class="hero-photo"
+              width="260"
+              height="260"
+              fetchpriority="high"
+            />
+          </picture>
+          -->
+        </section>
 
-    <div class="role">
-      <div class="role-head">
-        <div class="role-title">Engineering Manager</div>
-        <div class="role-dates mono">2022</div>
+        <section class="section">
+          <h2 class="section-label">Selected impact</h2>
+          <div class="stat-grid">
+            <div class="stat">
+              <div class="stat-value">4</div>
+              <p class="stat-desc">
+                European launches unblocked — Amazon.pl, Amazon.nl, Amazon.se,
+                and AWS Marketplace across Europe
+              </p>
+            </div>
+            <div class="stat">
+              <div class="stat-value">$1.05M</div>
+              <p class="stat-desc">
+                Annual cost removed by replacing manual anti-money-laundering
+                rule-writing with ML models
+              </p>
+            </div>
+            <div class="stat">
+              <div class="stat-value">5MM+</div>
+              <p class="stat-desc">
+                AWS customers served by the Systems Manager patching product she
+                led
+              </p>
+            </div>
+            <div class="stat">
+              <div class="stat-value">400K+</div>
+              <p class="stat-desc">
+                Amazon employees covered by the compensation platform her team
+                owns today
+              </p>
+            </div>
+          </div>
+        </section>
       </div>
-      <div class="role-org">Flexport, Bellevue, WA</div>
-      <div class="ledger">
-        <div class="entry">
-          <div class="entry-desc">Built the technology roadmap for a data platform improving third-party vendor integrations and data quality in Flexport's freight forwarding applications</div>
-          <div class="entry-metric">roadmap</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Partnered with staff engineers and VPs to define the platform's architecture</div>
-          <div class="entry-metric">architecture</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Built a hiring plan with engineering leadership to scale the team</div>
-          <div class="entry-metric">hiring plan</div>
-        </div>
-      </div>
-    </div>
 
-    <div class="role">
-      <div class="role-head">
-        <div class="role-title">Software Development Manager III</div>
-        <div class="role-dates mono">2019 — 2022</div>
-      </div>
-      <div class="role-org">Amazon, Seattle, WA</div>
-      <div class="ledger">
-        <div class="entry">
-          <div class="entry-desc">Unstuck a regulatory project that had been blocked for 3+ years, clearing it within a quarter of joining — protecting Amazon's EU payment licenses and cutting manual compliance effort</div>
-          <div class="entry-metric">−50 hrs/yr</div>
+      <section class="logo-strip">
+        <div class="container">
+          <h2 class="logo-strip-label">Where she has worked</h2>
+          <div class="logo-strip-row">
+            <span class="logo" role="img" aria-label="Amazon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.525.13.12.174.09.336-.12.48-.256.19-.6.41-1.006.654-1.244.743-2.64 1.316-4.185 1.726a17.617 17.617 0 01-10.951-.577 17.88 17.88 0 01-5.43-3.35c-.1-.074-.151-.15-.151-.22 0-.047.021-.09.051-.13zm6.565-6.218c0-1.005.247-1.863.743-2.577.495-.71 1.17-1.25 2.04-1.615.796-.335 1.756-.575 2.912-.72.39-.046 1.033-.103 1.92-.174v-.37c0-.93-.105-1.558-.3-1.875-.302-.43-.78-.65-1.44-.65h-.182c-.48.046-.896.196-1.246.46-.35.27-.575.63-.675 1.096-.06.3-.206.465-.435.51l-2.52-.315c-.248-.06-.372-.18-.372-.39 0-.046.007-.09.022-.15.247-1.29.855-2.25 1.82-2.88.976-.616 2.1-.975 3.39-1.05h.54c1.65 0 2.957.434 3.888 1.29.135.15.27.3.405.48.12.165.224.314.283.45.075.134.15.33.195.57.06.254.105.42.135.51.03.104.062.3.076.615.01.313.02.493.02.553v5.28c0 .376.06.72.165 1.036.105.313.21.54.315.674l.51.674c.09.136.136.256.136.36 0 .12-.06.226-.18.314-1.2 1.05-1.86 1.62-1.963 1.71-.165.135-.375.15-.63.045a6.062 6.062 0 01-.526-.496l-.31-.347a9.391 9.391 0 01-.317-.42l-.3-.435c-.81.886-1.603 1.44-2.4 1.665-.494.15-1.093.227-1.83.227-1.11 0-2.04-.343-2.76-1.034-.72-.69-1.08-1.665-1.08-2.94l-.05-.076zm3.753-.438c0 .566.14 1.02.425 1.364.285.34.675.512 1.155.512.045 0 .106-.007.195-.02.09-.016.134-.023.166-.023.614-.16 1.08-.553 1.424-1.178.165-.28.285-.58.36-.91.09-.32.12-.59.135-.8.015-.195.015-.54.015-1.005v-.54c-.84 0-1.484.06-1.92.18-1.275.36-1.92 1.17-1.92 2.43l-.035-.02zm9.162 7.027c.03-.06.075-.11.132-.17.362-.243.714-.41 1.05-.5a8.094 8.094 0 011.612-.24c.14-.012.28 0 .41.03.65.06 1.05.168 1.172.33.063.09.099.228.099.39v.15c0 .51-.149 1.11-.424 1.8-.278.69-.664 1.248-1.156 1.68-.073.06-.14.09-.197.09-.03 0-.06 0-.09-.012-.09-.044-.107-.12-.064-.24.54-1.26.806-2.143.806-2.64 0-.15-.03-.27-.087-.344-.145-.166-.55-.257-1.224-.257-.243 0-.533.016-.87.046-.363.045-.7.09-1 .135-.09 0-.148-.014-.18-.044-.03-.03-.036-.047-.02-.077 0-.017.006-.03.02-.063v-.06z" />
+              </svg>
+            </span>
+            <span class="logo" role="img" aria-label="Amazon Web Services">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M6.763 10.036c0 .296.032.535.088.71.064.176.144.368.256.576.04.063.056.127.056.183 0 .08-.048.16-.152.24l-.503.335a.383.383 0 0 1-.208.072c-.08 0-.16-.04-.239-.112a2.47 2.47 0 0 1-.287-.375 6.18 6.18 0 0 1-.248-.471c-.622.734-1.405 1.101-2.347 1.101-.67 0-1.205-.191-1.596-.574-.391-.384-.59-.894-.59-1.533 0-.678.239-1.23.726-1.644.487-.415 1.133-.623 1.955-.623.272 0 .551.024.846.064.296.04.6.104.918.176v-.583c0-.607-.127-1.03-.375-1.277-.255-.248-.686-.367-1.3-.367-.28 0-.568.031-.863.103-.295.072-.583.16-.862.272a2.287 2.287 0 0 1-.28.104.488.488 0 0 1-.127.023c-.112 0-.168-.08-.168-.247v-.391c0-.128.016-.224.056-.28a.597.597 0 0 1 .224-.167c.279-.144.614-.264 1.005-.36a4.84 4.84 0 0 1 1.246-.151c.95 0 1.644.216 2.091.647.439.43.662 1.085.662 1.963v2.586zm-3.24 1.214c.263 0 .534-.048.822-.144.287-.096.543-.271.758-.51.128-.152.224-.32.272-.512.047-.191.08-.423.08-.694v-.335a6.66 6.66 0 0 0-.735-.136 6.02 6.02 0 0 0-.75-.048c-.535 0-.926.104-1.19.32-.263.215-.39.518-.39.917 0 .375.095.655.295.846.191.2.47.296.838.296zm6.41.862c-.144 0-.24-.024-.304-.08-.064-.048-.12-.16-.168-.311L7.586 5.55a1.398 1.398 0 0 1-.072-.32c0-.128.064-.2.191-.2h.783c.151 0 .255.025.31.08.065.048.113.16.16.312l1.342 5.284 1.245-5.284c.04-.16.088-.264.151-.312a.549.549 0 0 1 .32-.08h.638c.152 0 .256.025.32.08.063.048.12.16.151.312l1.261 5.348 1.381-5.348c.048-.16.104-.264.16-.312a.52.52 0 0 1 .311-.08h.743c.127 0 .2.065.2.2 0 .04-.009.08-.017.128a1.137 1.137 0 0 1-.056.2l-1.923 6.17c-.048.16-.104.263-.168.311a.51.51 0 0 1-.303.08h-.687c-.151 0-.255-.024-.32-.08-.063-.056-.119-.16-.15-.32l-1.238-5.148-1.23 5.14c-.04.16-.087.264-.15.32-.065.056-.177.08-.32.08zm10.256.215c-.415 0-.83-.048-1.229-.143-.399-.096-.71-.2-.918-.32-.128-.071-.215-.151-.247-.223a.563.563 0 0 1-.048-.224v-.407c0-.167.064-.247.183-.247.048 0 .096.008.144.024.048.016.12.048.2.08.271.12.566.215.878.279.319.064.63.096.95.096.502 0 .894-.088 1.165-.264a.86.86 0 0 0 .415-.758.777.777 0 0 0-.215-.559c-.144-.151-.416-.287-.807-.415l-1.157-.36c-.583-.183-1.014-.454-1.277-.813a1.902 1.902 0 0 1-.4-1.158c0-.335.073-.63.216-.886.144-.255.335-.479.575-.654.24-.184.51-.32.83-.415.32-.096.655-.136 1.006-.136.175 0 .359.008.535.032.183.024.35.056.518.088.16.04.312.08.455.127.144.048.256.096.336.144a.69.69 0 0 1 .24.2.43.43 0 0 1 .071.263v.375c0 .168-.064.256-.184.256a.83.83 0 0 1-.303-.096 3.652 3.652 0 0 0-1.532-.311c-.455 0-.815.071-1.062.223-.248.152-.375.383-.375.71 0 .224.08.416.24.567.159.152.454.304.877.44l1.134.358c.574.184.99.44 1.237.767.247.327.367.702.367 1.117 0 .343-.072.655-.207.926-.144.272-.336.511-.583.703-.248.2-.543.343-.886.447-.36.111-.734.167-1.142.167zM21.698 16.207c-2.626 1.94-6.442 2.969-9.722 2.969-4.598 0-8.74-1.7-11.87-4.526-.247-.223-.024-.527.272-.351 3.384 1.963 7.559 3.153 11.877 3.153 2.914 0 6.114-.607 9.06-1.852.439-.2.814.287.383.607zM22.792 14.961c-.336-.43-2.22-.207-3.074-.103-.255.032-.295-.192-.063-.36 1.5-1.053 3.967-.75 4.254-.399.287.36-.08 2.826-1.485 4.007-.215.184-.423.088-.327-.151.32-.79 1.03-2.57.695-2.994z" />
+              </svg>
+            </span>
+            <span class="logo logo-wide" role="img" aria-label="Flexport">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 474.8 110.5" fill="currentColor" aria-hidden="true">
+              <path d="M56 69.8V.2h22.7v66.7c0 4.7 1 5.8 5.8 5.8h1.9l2.7 18.4c-1.7.2-8.7.7-13 .7-12.4.1-20.1-4.3-20.1-22zm173.8-42.5l17.6-1.4 1.7 5.3c3.5-3.3 9.7-6.6 23-6.6 22.9 0 28.2 16.1 28.2 34.1 0 18.1-5.8 34-29.6 34-10.5 0-15.5-2.4-18.3-5v22.9h-22.7l.1-83.3zm47.5 32.3c0-7.7-1.4-14.4-11.2-14.4-10.5 0-13.6 5.4-13.6 14.4s2.3 14 13.6 14c9.6-.1 11.2-6.4 11.2-14zm103.9-32.3l17.6-1.4 2.3 6.9c2.9-3.9 10.8-7.2 20.2-7.6V47c-15.1.1-17.4 4.6-17.4 13.6v31h-22.7V27.3zm46.4-2.1h11.7l3.7-13.3 17.5-3.8v17.1h14.3V47h-14.3v19c0 4.5.7 6.8 7.8 6.8h6.5v18.9c-3.4.2-7.2.3-11.5.3-19.1 0-25.4-6.1-25.4-22.6V47.1h-10.3V25.2zM0 26h12.4v-1.3C12.4 8.2 18.6 0 39.9 0c5.6 0 6.6.1 9.4.3v18.4H43c-6.5 0-7.9 1.6-7.9 5.8V26h14.2v19.2H35v46.4H12.4V45.2H0V26zm138.5 46c-3.8 2.2-5.7 2.7-13.2 2.7-8.9 0-12.3-3.2-13.4-8.5h43.6c.8-23.1-1.1-41.8-30.2-41.8S90 40.5 90 58.3c0 18.3 6.1 34.5 35.3 34.5 11.5 0 18.7-2.1 26.4-7.1L138.5 72zm-13.8-28.9c9.3 0 10 4.4 10.4 9.8h-23.3c.8-6.3 3.8-9.8 12.9-9.8z" />
+              <path d="M200.5 91.7l-11.1-15.9-11.1 15.9h-25.4l23.8-33.9-21.6-30.5h25.6l8.8 12.4 8.8-12.4h25.9l-22 30.4 23.8 34zM305 58.6c0-21.8 10-34.1 35.6-34.1 25.7 0 35.5 12.4 35.5 34.1 0 21.8-9.9 34.2-35.5 34.2-25.6.1-35.6-12.4-35.6-34.2zm48.3.7c0-8.2-2.1-14.2-12.7-14.2-10.7 0-12.7 6-12.7 14.2 0 8.1 2.1 14.2 12.7 14.2 10.7 0 12.7-6 12.7-14.2z" />
+              </svg>
+            </span>
+            <span class="logo" role="img" aria-label="Wipro">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M15.5415 12.0352c0-.8754-.69-1.5851-1.541-1.5851-.8513 0-1.5415.7097-1.5415 1.585 0 .8757.6902 1.5854 1.5416 1.5854.851 0 1.541-.7097 1.541-1.5853zm-1.541.837c-.4373 0-.7927-.3755-.7927-.837 0-.4611.3554-.8366.7928-.8366.437 0 .7923.3755.7923.8366 0 .4615-.3554.837-.7923.837zm-9.5842-2.2084l-.9272 2.8733c-.0148.046-.0665.0835-.1152.0835h-.084c-.0484 0-.1064-.0352-.1287-.078l-.95-1.8242-.9496 1.8243c-.0225.0427-.0803.0779-.1289.0779h-.0842c-.0483 0-.1002-.0374-.115-.0835L.006 10.6638c-.0222-.0693.019-.126.0915-.126h.5677c.0483 0 .1002.0379.115.084l.4688 1.452.8047-1.5458c.0223-.0428.0804-.0779.1289-.0779H2.24c.0485 0 .1063.0351.1289.0779l.805 1.5458.4685-1.452c.0148-.0461.0667-.084.1152-.084h.5672c.0727 0 .1138.0567.0915.126zm1.368 2.7367a.1323.1323 0 01-.1321.1322h-.5726a.1321.1321 0 01-.132-.1322v-2.7304c0-.0729.059-.1322.132-.1322h.5726a.1323.1323 0 01.1322.1322v2.7304zm.7409-2.7305v4.3155c0 .0733.059.1322.1321.1322h.5725a.1318.1318 0 00.132-.1322v-1.497c.2426.085.5106.132.7927.132.8024 0 1.4531-.7097 1.4531-1.5853 0-.8754-.6507-1.5851-1.4531-1.5851-.394 0-.751.171-1.0127.4487l-.0002-.0004-.1018-.2777c-.0167-.0453-.07-.0829-.1183-.0829h-.2642a.1321.1321 0 00-.1321.1322zm.8365.9c.1376-.2239.3713-.3714.6373-.3714.4235 0 .7667.3746.7667.8366 0 .4622-.3432.837-.7667.837-.2396 0-.4599-.063-.6373-.1694V11.57zm3.5755 1.9627h-.5723a.1321.1321 0 01-.1321-.1321V10.67c0-.0729.059-.1322.1321-.1322h.2642c.0483 0 .1016.0376.1183.0829l.1018.2777s.3195-.4483.87-.4483c.5507 0 .6172.1897.5712.2947-.0463.1047-.1714.3878-.197.4454-.0254.058-.0903.099-.1772.0657-.087-.0335-.5128-.1723-.8469.2329v1.9118a.1323.1323 0 01-.1321.1321zm4.6893-10.3422a.704.704 0 01.8628-.4977.7043.7043 0 11-.3647 1.3607.7046.7046 0 01-.498-.863zm1.8466 2.7892a.5286.5286 0 01.1935.722.528.528 0 01-.7218.193.5281.5281 0 01-.1935-.7215.5281.5281 0 01.7218-.1935zm.664 10.9686a.5727.5727 0 010-.8099.5722.5722 0 01.8096 0 .5727.5727 0 010 .81.573.573 0 01-.8095 0zm-2.4577-7.377a.2423.2423 0 01-.4196-.2423.2422.2422 0 11.4196.2422zm-.4196 5.1001a.2423.2423 0 01.4196-.2422.2425.2425 0 01-.0888.331.2426.2426 0 01-.3308-.0888zm3.7296-2.6713a.517.517 0 11-.5169-.5169.517.517 0 01.517.5169zM17.816 3.8893a.7485.7485 0 111.2962.749.7485.7485 0 01-1.2962-.749zm-5.43 10.5742a.154.154 0 11.2666.154.154.154 0 01-.2666-.154zm2.8037-8.7912a.4842.4842 0 11.9354.2502.4843.4843 0 01-.593.3428.4844.4844 0 01-.3424-.593zM13.993 7.8486a.308.308 0 110-.6162.308.308 0 110 .6162zm0 1.0129a.1982.1982 0 11.0002.3962.1982.1982 0 01-.0002-.3962zm0-2.84a.4404.4404 0 110-.881.4404.4404 0 010 .881zm-1.6072 3.5154a.154.154 0 11.2102.0564.1537.1537 0 01-.2102-.0564zm1.6072 5.602a.1982.1982 0 11-.0001-.3963.1982.1982 0 010 .3964zm0 1.0127a.3081.3081 0 010 .6165.3081.3081 0 110-.6165zm3.4944-2.1381a.4399.4399 0 01.6014-.161.44.44 0 01.161.6013.4402.4402 0 01-.7624-.4403zm-3.4944 3.9655a.4404.4404 0 11-.0002.8808.4404.4404 0 01.0002-.8808zm9.5772-8.5426c.1383.5164-.168 1.0476-.6848 1.186-.5165.1383-1.0478-.1684-1.1861-.6849-.1386-.5164.1682-1.0475.6847-1.186.5165-.1384 1.0476.168 1.1862.6849zm-6.694 6.0018a.3963.3963 0 01.5602-.5607.396.396 0 010 .5602.3958.3958 0 01-.5602.0005zm.9736-4.4694a.484.484 0 01.3424-.5928.4841.4841 0 11.2507.9353.484.484 0 01-.593-.3425zm1.4076-2.7157a.6165.6165 0 01.6166 1.0676.6165.6165 0 01-.6166-1.0676zm-.3108-.3913a.5722.5722 0 01-.8095 0 .5725.5725 0 010-.8097.5722.5722 0 01.8095 0 .5725.5725 0 010 .8097zm-1.0968 5.1692a.4842.4842 0 01.9355.2509.4842.4842 0 11-.9355-.251zm-3.0186-5.4263a.3303.3303 0 01.4041-.2336.3303.3303 0 01-.1706.6381.3303.3303 0 01-.2335-.4045zm6.4676-.835c.4213-.2434.96-.0992 1.2031.3218a.8806.8806 0 11-1.5254.8808c-.2429-.421-.0987-.9596.3223-1.2027zm-3.049 2.777a.4401.4401 0 11-.7624.4402.4401.4401 0 11.7624-.4402zm1.3227.9608a.6606.6606 0 01.4667-.8089.6605.6605 0 01.342 1.2758.6605.6605 0 01-.8087-.467zm0 2.9854a.6603.6603 0 111.2756.3416.6602.6602 0 11-1.2756-.3416zm.8594-.7354a.7574.7574 0 11-.0002-1.5146.7574.7574 0 01.0002 1.5146zm-.6756-6.5149a.7921.7921 0 010-1.1207c.3095-.3095.8115-.31 1.1209 0a.7926.7926 0 01-1.1209 1.1207zm-3.2223 2.068a.3522.3522 0 11-.61-.3523.3522.3522 0 01.61.3522zm-.6387 5.5862a.2642.2642 0 01.3738-.0004.2646.2646 0 010 .3738.2638.2638 0 01-.3738 0 .2637.2637 0 010-.3734zm0-4.1666a.2642.2642 0 01.3738-.0004.2642.2642 0 11-.3738.0004zm.5146 3.9917a.2868.2868 0 01-.105-.391.2862.2862 0 01.3912-.1046.2863.2863 0 01-.2862.4956zm-.486 2.3203a.352.352 0 01.129-.4811.352.352 0 01.4811.1288.352.352 0 01-.1289.4811.3521.3521 0 01-.4811-.1288zm.877-5.659a.286.286 0 01-.1048.3909.2867.2867 0 01-.3911-.1049.2862.2862 0 01.4958-.286zm-.2485.9334a.3082.3082 0 11.5955-.1596.3082.3082 0 01-.5955.1596zm0 1.3668a.3083.3083 0 11.5953.1602.3083.3083 0 01-.5953-.1602zm.4008-.3467a.3366.3366 0 11.0001-.6731.3366.3366 0 01-.0001.6731zm.4832-3.7744a.3963.3963 0 11-.5602.5608.3963.3963 0 01.5602-.5608zm-7.416 11.4507a.573.573 0 01-.782.2096.5726.5726 0 01.5725-.9916.5725.5725 0 01.2096.782zM14.814 8.945a.2202.2202 0 11-.114.4253.2202.2202 0 01.114-.4254zm-2.5387 11.8366a.6164.6164 0 11-1.1908-.3189.6164.6164 0 011.1908.319zm2.5387-5.726a.2203.2203 0 01-.1138-.4255.22.22 0 11.1138.4254zm-.1604 5.8739a.6603.6603 0 01-.6604.6602.6603.6603 0 01-.6606-.6602c0-.3649.2959-.6608.6606-.6608.3647 0 .6604.296.6604.6608zm-1.4693-5.9217a.1767.1767 0 01-.1247-.2158.1766.1766 0 01.216-.1245.1761.1761 0 01-.0913.3403zm-.0712 1.3712a.2863.2863 0 11-.5526-.1478.2863.2863 0 01.5526.1478zm-2.795-2.2726a.2202.2202 0 01-.3812.2202.2195.2195 0 01.0805-.3005.2198.2198 0 01.3007.0803zm1.6704 1.8817a.2642.2642 0 11-.4578-.2638.2642.2642 0 01.4578.2638zm.0148-1.8253a.1321.1321 0 11-.1869-.1869.1328.1328 0 01.187 0 .1325.1325 0 010 .187zm-.9966.81a.242.242 0 11-.3423.342.2418.2418 0 010-.342.2417.2417 0 01.3423 0zm.0783 2.7563a.3518.3518 0 01-.4811.1289.3522.3522 0 11.4811-.1289zm9.7924.0285a.7926.7926 0 010 1.121c-.3094.3097-.8114.3093-1.121 0-.3097-.3094-.3095-.8114 0-1.121a.793.793 0 011.121 0zm-1.6198-2.0103a.6169.6169 0 01-.2255-.8423.6168.6168 0 01.842-.2255.6165.6165 0 01-.6166 1.0678zm3.2445 1.1612c-.243.4214-.7818.5656-1.203.3223-.4211-.243-.5653-.7816-.3224-1.2026.2437-.4211.782-.5655 1.203-.3224.4213.2433.5657.7816.3224 1.2027zm-7.2666-.2796a.33.33 0 11-.1706-.638.3301.3301 0 01.1706.638zM24 12c0 .584-.4735 1.058-1.058 1.058-.5843 0-1.0578-.474-1.0578-1.058 0-.5842.4735-1.0579 1.0579-1.0579S24 11.4159 24 12.0001zm-.4297 2.564c-.1386.5164-.6697.8233-1.1862.685-.5165-.1387-.8233-.6698-.6847-1.1862.1383-.5169.6696-.8234 1.1861-.685.5169.1386.8231.6697.6848 1.1861zm-6.583 5.881a.7044.7044 0 11-1.3608.3643.7042.7042 0 01.4981-.8625.7043.7043 0 01.8628.4981zm2.1248-1.0825a.748.748 0 01-.274 1.0221.7482.7482 0 01-1.0222-.2738.748.748 0 01.2738-1.0224.7484.7484 0 011.0224.274zm-3.9225-1.0344a.4843.4843 0 11.9355-.2507.4843.4843 0 01-.9355.2507zm2.2835-.3077a.5284.5284 0 11-.5284-.9153.5284.5284 0 01.5284.9153zm-4.761.2798a.3963.3963 0 01-.7655-.205.396.396 0 01.4853-.2803.3964.3964 0 01.2802.4853zm-.8958-8.2762a.132.132 0 11.1868-.1869.132.132 0 01-.1868.1869zm.0754-1.651a.2643.2643 0 01-.2643-.4576.2642.2642 0 01.2643.4576zm-.8072-4.8355a.6164.6164 0 111.1905-.3188.6164.6164 0 01-1.1905.3188zm-.847 6.0555a.22.22 0 11-.2201.3812.2195.2195 0 01-.0806-.3004.22.22 0 01.3006-.0808zm.7691-.908a.2423.2423 0 01-.3423.3426.2423.2423 0 01.3423-.3426zm-.5319-2.0617a.3524.3524 0 01.6102-.352.3522.3522 0 01-.6102.352zm2.8578-3.5523c0-.3648.2959-.6608.6606-.6608.3647 0 .6604.296.6604.6608a.6606.6606 0 01-.6604.6607.6608.6608 0 01-.6606-.6607zm-.1483 5.9215a.1761.1761 0 11.091.3404.1761.1761 0 01-.091-.3404zm-.9575-3.5729a.3964.3964 0 01.2053.7657.3962.3962 0 01-.4854-.2802.3966.3966 0 01.28-.4855zm.5358 1.9992a.2863.2863 0 11.148.553.2863.2863 0 01-.148-.553zM9.0292 4.5596a.5724.5724 0 01.2094-.7818.5725.5725 0 01.5724.9914.572.572 0 01-.7818-.2096zm-.37 10.5048a.2643.2643 0 11-.458.264.2643.2643 0 01.458-.264zM4.9193 9.4585a.462.462 0 01.566-.3267.462.462 0 01.327.5658.4621.4621 0 01-.5661.3271.4624.4624 0 01-.327-.5662zm.9001-2.1691a.4843.4843 0 11.1772.6616.4845.4845 0 01-.1772-.6616zm2.2292 10.6412a.528.528 0 010 .7472.5286.5286 0 01-.7473 0 .5285.5285 0 010-.7472.5282.5282 0 01.7473 0zM6.676 16.2091a.4842.4842 0 11-.8386.4845.4842.4842 0 01.8386-.4845zm.6255-10.1393a.5285.5285 0 010-.7472.5286.5286 0 01.7473 0 .528.528 0 010 .7472.5282.5282 0 01-.7473 0zM9.6679 7.689a.3086.3086 0 01-.436 0 .3085.3085 0 010-.4362.3086.3086 0 01.436 0 .3085.3085 0 010 .4362zm0 8.6225a.3082.3082 0 11-.4359.4359.3082.3082 0 01.4359-.436zM8.2015 8.6719a.2642.2642 0 11.4574.2642.2642.2642 0 01-.4574-.2642z" />
+              </svg>
+            </span>
+          </div>
         </div>
-        <div class="entry">
-          <div class="entry-desc">Led delivery of the regulatory software required to launch Amazon.pl, Amazon.nl, Amazon.se, and AWS Marketplace across Europe</div>
-          <div class="entry-metric">4 launches</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Built ML models to flag anti-money-laundering activity, replacing manual SQL rule-writing</div>
-          <div class="entry-metric">−$1.05M/yr</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Rebuilt team structure and hiring pipeline, lifting delivery velocity over 9 months</div>
-          <div class="entry-metric">50% → 95%</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Directed execution to bring Amazon Stores' regulatory services into GDPR compliance for European customers and CCPA compliance for NA customers, proactively avoiding regulatory fines</div>
-          <div class="entry-metric">$5–25M avoided</div>
-        </div>
-      </div>
-    </div>
+      </section>
+    </main>
 
-    <div class="role">
-      <div class="role-head">
-        <div class="role-title">Business Intelligence Engineer II</div>
-        <div class="role-dates mono">2017 — 2019</div>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-links">
+          <a href="mailto:kamathp@amazon.com" class="contact-link">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+              width="16"
+              height="16"
+              aria-hidden="true"
+            >
+              <path
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              />
+            </svg>
+            Email
+          </a>
+          <a
+            href="https://www.linkedin.com/in/priyankakh/"
+            target="_blank"
+            rel="noopener"
+            class="contact-link"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              width="16"
+              height="16"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.47 2H3.53A1.45 1.45 0 002 3.47v17.06A1.45 1.45 0 003.47 22h17.06A1.45 1.45 0 0022 20.53V3.47A1.45 1.45 0 0020.47 2zM8.09 18.74h-3v-9h3v9zM6.59 8.48a1.56 1.56 0 110-3.12 1.56 1.56 0 010 3.12zM18.91 18.74h-3v-4.26c0-1.14-.02-2.6-1.59-2.6-1.59 0-1.83 1.24-1.83 2.52v4.34h-3v-9h2.88v1.23h.04a3.16 3.16 0 012.85-1.56c3.05 0 3.61 2 3.61 4.61v4.72z"
+              />
+            </svg>
+            LinkedIn
+          </a>
+        </div>
+        <p class="footer-copy">&copy; 2026 Priyanka Kamath</p>
       </div>
-      <div class="role-org">Amazon, Seattle, WA</div>
-      <div class="ledger">
-        <div class="entry">
-          <div class="entry-desc">Built the KPIs and UX integrations behind Brand Registry's growth, now used by ~130,000 brands</div>
-          <div class="entry-metric">$3B+ sales</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Improved automated enforcement against abusive sellers by 30%+</div>
-          <div class="entry-metric">−$400K</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Tightened identity verification on the brand complaint form</div>
-          <div class="entry-metric">−44% fraud</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Built keyword detection for abusive brand complaints, lifting automation</div>
-          <div class="entry-metric">−$125K, +15%</div>
-        </div>
-        <div class="entry">
-          <div class="entry-desc">Held infrastructure costs flat while scaling new programs; ran 2019 AWS planning for Consumables</div>
-          <div class="entry-metric">−$40K</div>
-        </div>
-      </div>
-    </div>
+    </footer>
 
-    <div class="earlier">
-      <div class="earlier-item">
-        <div>
-          <div class="earlier-role">Software Engineer</div>
-          <div class="earlier-org mono">Open Juice Technologies · 2015</div>
-        </div>
-        <div class="earlier-desc">Built and launched an e-commerce site to drive foot traffic for an auto dealer; full-stack development with PHP, jQuery, and Ajax.</div>
-      </div>
-      <div class="earlier-item">
-        <div>
-          <div class="earlier-role">Project Engineer</div>
-          <div class="earlier-org mono">Wipro Technologies · 2013–2014</div>
-        </div>
-        <div class="earlier-desc">Improved gross margin 3% through customer behavior analysis using demand forecasting and sentiment analysis.</div>
-      </div>
-      <div class="earlier-item">
-        <div>
-          <div class="earlier-role">Summer Intern</div>
-          <div class="earlier-org mono">Fidessa Corporation · 2016</div>
-        </div>
-        <div class="earlier-desc">Built a web app tracking global market open/close times, saving a 400-person team over 25 hours a week and $192K a year.</div>
-      </div>
-    </div>
-  </section>
+    <button class="back-to-top" aria-label="Back to top">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+        width="20"
+        height="20"
+        aria-hidden="true"
+      >
+        <path d="M12 19V5M5 12l7-7 7 7" />
+      </svg>
+    </button>
 
-  <section>
-    <div class="section-label">Education</div>
-    <div class="edu-item">
-      <div>
-        <div class="edu-school">University at Buffalo, The State University of New York</div>
-        <div class="edu-degree">M.S., Computer Science</div>
-      </div>
-      <div class="edu-year">2015 – 2017</div>
-    </div>
-    <div class="edu-item">
-      <div>
-        <div class="edu-school">NMAM Institute of Technology</div>
-        <div class="edu-degree">B.E., Electrical &amp; Electronics Engineering</div>
-      </div>
-      <div class="edu-year">2009 – 2013</div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-note">© 2026 Priyanka Kamath</div>
-    <div class="footer-links">
-      <a href="https://www.linkedin.com/in/priyankakh/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:kamathp@amazon.com">Email</a>
-    </div>
-  </footer>
-</div>
-
-</body>
+    <script src="js/main.js"></script>
+  </body>
 </html>
