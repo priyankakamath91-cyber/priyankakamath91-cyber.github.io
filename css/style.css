@@ -257,7 +257,7 @@ p {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  align-items: center;
+  align-items: start;
   padding: 4rem 0 1rem;
 }
 
@@ -282,11 +282,8 @@ p {
   margin-bottom: 0;
 }
 
-.hero picture {
-  justify-self: center;
-}
-
 .hero-photo {
+  justify-self: center;
   width: 220px;
   height: 220px;
   border-radius: 50%;
@@ -517,18 +514,9 @@ p {
 /* ---- Logo / affiliation strip ---- */
 
 .logo-strip {
-  padding: 1.5rem 0;
+  padding: 2.25rem 0;
   text-align: center;
   border-bottom: 1px solid var(--color-border);
-}
-
-.logo-strip-label {
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-text-muted);
-  margin-bottom: 1.25rem;
 }
 
 .logo-strip-row {
@@ -536,7 +524,7 @@ p {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 1rem 2.5rem;
+  gap: 1.5rem 3rem;
 }
 
 .logo {
@@ -555,14 +543,38 @@ p {
 }
 
 .logo svg {
-  height: 30px;
+  height: 40px;
   width: auto;
   display: block;
 }
 
 /* Wordmarks are much wider than they are tall */
 .logo-wide svg {
-  height: 18px;
+  height: 24px;
+}
+
+/* Stacked lockups need extra height to stay legible */
+.logo-tall svg {
+  height: 54px;
+}
+
+/* Raster wordmarks are tinted with the current text color so they behave
+   like the inline SVGs in both themes. */
+.logo-mask {
+  background: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.logo-nmamit {
+  width: 208px;
+  height: 29px;
+  -webkit-mask-image: url("../assets/logos/nmamit.png");
+  mask-image: url("../assets/logos/nmamit.png");
 }
 
 /* ---- Footer ---- */
@@ -648,11 +660,8 @@ p {
     padding: 4rem 0 2rem;
   }
 
-  .hero picture {
-    justify-self: end;
-  }
-
   .hero-photo {
+    justify-self: end;
     width: 260px;
     height: 260px;
   }
@@ -732,11 +741,20 @@ p {
   }
 
   .logo svg {
-    height: 24px;
+    height: 30px;
   }
 
   .logo-wide svg {
-    height: 15px;
+    height: 19px;
+  }
+
+  .logo-tall svg {
+    height: 42px;
+  }
+
+  .logo-nmamit {
+    width: 158px;
+    height: 22px;
   }
 }
 
