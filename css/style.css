@@ -576,26 +576,32 @@ p {
   --logo-h: 41px; /* glyph fills 98% */
 }
 
-/* Raster wordmarks are tinted with the current text color so they behave
-   like the inline SVGs in both themes. */
-.logo-mask {
-  background: currentColor;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  /* Width-driven like the inline wordmarks; the box stays 48px and the mask is
-     centered in it, so this mark shares the same center line as the SVGs. */
-  -webkit-mask-size: 100% auto;
-  mask-size: 100% auto;
+/* NMAMIT is the one raster mark. It renders as a real <img> rather than a
+   masked background: a mask-image that fails to paint leaves the element fully
+   masked out — invisible, but still occupying its width — which silently
+   knocked the whole strip off center. An <img> either loads or shows nothing,
+   and it never reserves phantom width.
+
+   currentColor tinting isn't available to an <img>, so filters stand in:
+   grayscale to match the muted SVGs, plus invert in dark mode so the dark-blue
+   artwork stays legible against the dark background. */
+.logo img {
+  height: calc(var(--logo-h, 31px) * var(--logo-scale));
+  width: auto;
+  max-width: none;
+  display: block;
+  filter: grayscale(1);
 }
 
-/* 161.5px wide renders the artwork 22.4px tall, of which the letterforms are
-   89% -> a 20px ink height, matching the other wordmarks. */
+[data-theme="dark"] .logo img {
+  filter: grayscale(1) invert(1);
+}
+
+/* The artwork is 476x66 with the letterforms filling 59px of that height, so a
+   22.4px render lands a 20px ink height — matching the other wordmarks — and
+   comes out 161.5px wide. */
 .logo-nmamit {
-  width: calc(161.5px * var(--logo-scale));
-  -webkit-mask-image: url("../assets/logos/nmamit.png");
-  mask-image: url("../assets/logos/nmamit.png");
+  --logo-h: 22.4px;
 }
 
 /* ---- Footer ---- */
