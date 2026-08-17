@@ -294,15 +294,7 @@ p {
   border: 3px solid var(--color-border);
 }
 
-/* ---- Contact Bar ---- */
-
-.contact-bar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 2rem;
-}
+/* ---- Contact Links ---- */
 
 .contact-link {
   display: inline-flex;
