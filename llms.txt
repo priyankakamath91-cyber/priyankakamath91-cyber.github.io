@@ -30,5 +30,5 @@
 
 ## Pages
 
-- [Home](https://priyankakamath91-cyber.github.io/): executive summary, selected impact metrics, contact links.
-- [About](https://priyankakamath91-cyber.github.io/about.html): full role-by-role experience, earlier roles, and education.
+- [Home](https://prikamath.github.io/): executive summary, selected impact metrics, contact links.
+- [About](https://prikamath.github.io/about.html): full role-by-role experience, earlier roles, and education.

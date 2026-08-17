@@ -26,4 +26,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://priyankakamath91-cyber.github.io/sitemap.xml
+Sitemap: https://prikamath.github.io/sitemap.xml
