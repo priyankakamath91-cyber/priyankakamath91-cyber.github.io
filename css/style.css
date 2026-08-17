@@ -14,8 +14,8 @@
   --color-footer-bg: #f8f9fa;
   --color-tag-bg: #f1f5f9;
   --color-tag-text: #475569;
-  --color-metric: #8a6d10;
-  --color-metric-bg: #fdf6e0;
+  --color-metric: #0f0f23;
+  --color-metric-bg: #f1f5f9;
 
   --font-sans:
     "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -45,8 +45,8 @@
   --color-footer-bg: #1e293b;
   --color-tag-bg: #334155;
   --color-tag-text: #cbd5e1;
-  --color-metric: #f0c34a;
-  --color-metric-bg: #3a2f0b;
+  --color-metric: #f1f5f9;
+  --color-metric-bg: #334155;
 }
 
 *,
@@ -81,20 +81,23 @@ img {
 }
 
 a {
-  color: var(--color-accent);
+  color: var(--color-heading);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
-  transition: color var(--transition);
+  transition:
+    color var(--transition),
+    text-decoration-thickness var(--transition);
 }
 
 a:hover {
-  color: var(--color-accent-hover);
+  color: var(--color-heading);
+  text-decoration-thickness: 2px;
 }
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-heading);
   outline-offset: 3px;
 }
 
@@ -296,6 +299,7 @@ p {
 .contact-bar {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
   margin-top: 2rem;
 }
@@ -316,9 +320,9 @@ p {
 }
 
 .contact-link:hover {
-  border-color: var(--color-accent);
+  border-color: var(--color-heading);
   background: var(--color-bg-alt);
-  color: var(--color-accent);
+  color: var(--color-heading);
 }
 
 .contact-link svg {
@@ -365,7 +369,7 @@ p {
   font-family: var(--font-mono);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--color-accent);
+  color: var(--color-heading);
   line-height: 1.2;
 }
 
@@ -417,7 +421,7 @@ p {
 
 .card-subtitle {
   font-size: 0.95rem;
-  color: var(--color-accent);
+  color: var(--color-text);
   font-weight: 500;
   margin-bottom: 0.75rem;
 }
@@ -520,6 +524,7 @@ p {
 }
 
 .logo-strip-row {
+  --logo-scale: 1;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -527,9 +532,13 @@ p {
   gap: 1.5rem 3rem;
 }
 
+/* Every logo gets the same box so the marks share one center line, and wrapped
+   rows keep a uniform band. */
 .logo {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  height: calc(48px * var(--logo-scale));
   color: var(--color-text-muted);
   opacity: 0.6;
   transition:
@@ -543,19 +552,36 @@ p {
 }
 
 .logo svg {
-  height: 40px;
+  height: calc(var(--logo-h, 31px) * var(--logo-scale));
   width: auto;
   display: block;
 }
 
+/* Each glyph fills its own viewBox by a different amount, so a shared svg
+   height renders very different visible sizes. --logo-h is tuned per mark to
+   land the *ink* on a common optical height: 28px for icon marks, 20px for
+   wordmarks, 40px for the stacked lockup. Percentages below are how much of
+   the viewBox height the glyph actually occupies. */
+.logo-amazon {
+  --logo-h: 30.8px; /* glyph fills 91% */
+}
+
+.logo-aws {
+  --logo-h: 46.8px; /* glyph fills 60% */
+}
+
+.logo-wipro {
+  --logo-h: 35px; /* glyph fills 80% */
+}
+
 /* Wordmarks are much wider than they are tall */
-.logo-wide svg {
-  height: 24px;
+.logo-flexport {
+  --logo-h: 20px; /* glyph fills 100% */
 }
 
 /* Stacked lockups need extra height to stay legible */
-.logo-tall svg {
-  height: 54px;
+.logo-ub {
+  --logo-h: 41px; /* glyph fills 98% */
 }
 
 /* Raster wordmarks are tinted with the current text color so they behave
@@ -566,13 +592,16 @@ p {
   mask-repeat: no-repeat;
   -webkit-mask-position: center;
   mask-position: center;
-  -webkit-mask-size: contain;
-  mask-size: contain;
+  /* Width-driven like the inline wordmarks; the box stays 48px and the mask is
+     centered in it, so this mark shares the same center line as the SVGs. */
+  -webkit-mask-size: 100% auto;
+  mask-size: 100% auto;
 }
 
+/* 161.5px wide renders the artwork 22.4px tall, of which the letterforms are
+   89% -> a 20px ink height, matching the other wordmarks. */
 .logo-nmamit {
-  width: 208px;
-  height: 29px;
+  width: calc(161.5px * var(--logo-scale));
   -webkit-mask-image: url("../assets/logos/nmamit.png");
   mask-image: url("../assets/logos/nmamit.png");
 }
@@ -639,9 +668,9 @@ p {
 }
 
 .back-to-top:hover {
-  background: var(--color-accent);
-  color: #fff;
-  border-color: var(--color-accent);
+  background: var(--color-heading);
+  color: var(--color-bg);
+  border-color: var(--color-heading);
 }
 
 /* ---- Responsive ---- */
@@ -727,34 +756,14 @@ p {
     height: 180px;
   }
 
-  .contact-bar {
-    justify-content: center;
-  }
-
   .card-header {
     flex-direction: column;
     gap: 0.25rem;
   }
 
   .logo-strip-row {
+    --logo-scale: 0.75;
     gap: 1rem 1.75rem;
-  }
-
-  .logo svg {
-    height: 30px;
-  }
-
-  .logo-wide svg {
-    height: 19px;
-  }
-
-  .logo-tall svg {
-    height: 42px;
-  }
-
-  .logo-nmamit {
-    width: 158px;
-    height: 22px;
   }
 }
 

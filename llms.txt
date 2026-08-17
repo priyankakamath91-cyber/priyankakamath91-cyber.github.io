@@ -1,29 +1,34 @@
 # Priyanka Kamath
 
-> Priyanka Kamath is a Software Development Manager III at Amazon in Vancouver,
-> British Columbia. She leads engineering teams across regulatory and compliance
-> software, AI-native compensation systems, cloud security patching, and
-> large-scale data platforms.
+> Priyanka Kamath is a technology leader with 10+ years leading technology risk
+> functions — including regulatory compliance, AI risk, and trust — at global
+> technology companies including Amazon, Flexport, and Wipro. She operates at the
+> intersection of risk strategy, governance, product, and technical leadership,
+> helping organizations ship transformative technology while protecting users,
+> developers, and enterprises from emerging and evolving threats.
 
 ## Facts
 
-- Current role: Software Development Manager III, Amazon, Vancouver, BC (since June 2025)
-- Team: 11 engineers on the Amazon & AWS Compensation product, serving 400K+ employees
-- Prior employers: Amazon (Seattle, Arlington, Vancouver), Flexport, Wipro Technologies
+- Current role: Software Development Manager, Amazon, Vancouver, Canada (since June 2025)
+- Team: 11 engineers owning core components of the Amazon & AWS Compensation product, which serves 1M+ Amazon employees
+- Prior employers: Amazon (Seattle, Arlington, Vancouver), Flexport, Open Juice Technologies, Fidessa, Wipro Technologies
 - Education: M.S. Computer Science, University at Buffalo (SUNY), 2015–2017; B.E. Electrical & Electronics Engineering, NMAM Institute of Technology, 2009–2013
-- Contact: kamathp@amazon.com · https://www.linkedin.com/in/priyankakh/
+- Contact: kamathp@amazon.com · https://www.linkedin.com/in/priyankakh/ · mobile available upon request
 
 ## Selected results
 
+- Shipped Manager Conversation Coach and Compensation Explainability for the 2026 Annual Compensation cycle, used by 400K+ Amazonians across managers, compensation consultants, and HR partners.
+- Owns the roadmap to integrate AI natively into Amazon's Compensation Calculations platform.
+- Launched a zero-to-one Finance Customer Contact Center product with 12 engineers, growing adoption from 10 to 300 users and scaling the platform 4x within a year.
+- Set the security strategy for AWS Systems Manager products (Patch Manager, Systems Manager Agent) securing EC2 and hybrid instance patching for 5MM+ customers.
+- Expanded Patch Manager across multiple AWS accounts and regions, adding ~$20M in annual revenue.
+- Led a 25-person organization covering worldwide regulatory reporting, denied party and PEP screening, and suspicious activity monitoring across Amazon Stores, AWS Marketplace, and Amazon Gift Cards.
 - Delivered the regulatory software required to launch Amazon.pl, Amazon.nl, Amazon.se, and AWS Marketplace across Europe.
 - Replaced manual anti-money-laundering SQL rule-writing with machine learning models, removing $1.05M in annual cost.
-- Led the AWS Systems Manager patching team (12 engineers) for EC2 and hybrid instances, serving 5MM+ customers.
-- Shipped Conversation Coach and Compensation Explainability AI features for the 2026 Annual Compensation cycle.
-- Led a 25-person organization covering regulatory reporting, denied party and PEP screening, and suspicious activity monitoring across Amazon Stores, AWS Marketplace, and Amazon Gift Cards.
-- Built the KPIs and UX integrations behind Amazon Brand Registry's growth to ~130,000 brands and $3B+ in sales.
 - Brought Amazon Stores' regulatory services into GDPR and CCPA compliance, avoiding an estimated $5–25M in fines.
+- Built the KPIs and UX integrations behind Amazon Brand Registry's growth to ~130,000 brands and $3B+ in sales.
 
 ## Pages
 
-- [Home](https://priyankakamath91-cyber.github.io/): biography, selected impact metrics, contact links.
+- [Home](https://priyankakamath91-cyber.github.io/): executive summary, selected impact metrics, contact links.
 - [About](https://priyankakamath91-cyber.github.io/about.html): full role-by-role experience, earlier roles, and education.
